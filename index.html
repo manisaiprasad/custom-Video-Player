@@ -9,9 +9,21 @@
       
         <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
         <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+        <script async src="https://cdn.ampproject.org/video-iframe-integration-v0.js"></script>
+
       </head>
       
       <body>
+        <script>
+            // Wait for API to initialize
+            (window.AmpVideoIframe = window.AmpVideoIframe || [])
+                .push(function(ampIntegration) {
+                  var myVideo = document.querySelector('#my-video');
+        
+                  // Listen to element that uses Video.JS.
+                  ampIntegration.listenTo('videojs', myVideo);
+                });
+          </script>
         <video
           id="my-video"
           class="video-js"
